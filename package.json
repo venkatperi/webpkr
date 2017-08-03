@@ -1,0 +1,31 @@
+{
+  "name": "webpkr",
+  "version": "0.1.0",
+  "description": "A JavaScript based DSL for webpack configurations",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Venkat Peri <venkatperi@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "debug": "^2.6.8",
+    "deepmerge": "^1.5.0",
+    "factory-builder-support": "^0.4.0",
+    "lodash": "^4.17.4",
+    "unique-string": "^1.0.0",
+    "webpack-config": "^7.1.0",
+    "yargs": "^8.0.2"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-documentation": "^3.2.0",
+    "gulp-istanbul": "^1.1.2",
+    "gulp-jshint": "^2.0.4",
+    "gulp-mocha": "^4.3.1",
+    "gulp-npm-check": "^1.1.0",
+    "gulp-release-it": "^1.1.5",
+    "jshint": "^2.9.5",
+    "mocha": "^3.5.0"
+  }
+}
