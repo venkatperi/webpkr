@@ -1,11 +1,11 @@
 const _ = require( 'lodash' );
-const build = require( './lib/build' );
-const compile = require( './lib/compile' );
+const Webpkr = require( './lib/webpkr' );
 
-function webpak() {
-  return build.buildFile();
+function webpkr() {
+  let w = new Webpkr();
+  return w.buildFile();
 }
 
-_.extend( webpak, build, compile );
+webpkr.Webpkr = Webpkr;
 
-module.exports = webpak;
+module.exports = webpkr;

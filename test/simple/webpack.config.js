@@ -1,3 +1,3 @@
-const buildWebpack = require( '../../' );
+const webpkr = require( '../../' );
 
-module.exports = buildWebpack()
+module.exports = webpkr()
