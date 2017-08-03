@@ -1,5 +1,7 @@
+const Stats = require( 'stats-webpack-plugin' );
+
 development( () =>
-  plugin( 'stats-webpack-plugin', 'stats.json', {
+  plugin( new Stats( 'stats.json', {
     chunkModules: true
-  } )
+  } ) )
 )

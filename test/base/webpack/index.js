@@ -1,8 +1,9 @@
-stats( 'errors-only' )
-cache( true )
-resolve( { extensions: [ '*', '.js', '.jsx' ] } )
-
-require( './devtool' )
-require( './js' )
-require( './fonts' )
-require( './stats' )
+[
+  'base',
+  'js',
+  'fonts',
+  'stats',
+  'devtool',
+  'dev_server'
+].map( ( x ) => `./${x}` )
+  .forEach( require )

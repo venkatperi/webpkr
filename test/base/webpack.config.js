@@ -1,3 +1,3 @@
-const dsl = require( '../../' );
+const webpkr = require( 'webpkr');
 
-module.exports = dsl()
+module.exports = webpkr()
