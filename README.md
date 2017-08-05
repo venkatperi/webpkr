@@ -1,9 +1,22 @@
 # webpkr
 The missing JavaScript DSL for `webpack` configurations.
 
-## Example
-### A Simple Config
-This `webpkr` JavaScript DSL script:
+## Getting Started
+ Install with npm
+```bash
+npm install -D webpkr
+```
+Create `src/index.js` and add this:
+```javascript
+console.log('Hello, world');
+```
+
+Create a `webpack` subdirectory in your project's root and add file `index.js` in it:
+```bash
+$ mkdir webpack
+$ touch webpack/index.js
+```
+Add the following DSL script to `webpack/index.js`:
 ```javascript
 context( projectDir )
 entry( './src/index.js')
@@ -12,8 +25,18 @@ output( () => {
   path$( 'dist' )
 } )
 ```
-generates the following `webpack` configuration:
+Create a `webpack.config.js` in your project's root and add these lines to it:
 
+```javascript
+const webpkr = require('webpkr');
+
+module.exports = webpkr({projectDir: __dirname});
+```
+Run webpack:
+```bash
+$ ./node_modules/.bin/webpack
+```
+The DSL script generates the following webpack configuration:
 ```JavaScript
 {
   context: '/proj/repos/webpkr/test/simple',
@@ -24,9 +47,4 @@ generates the following `webpack` configuration:
   }
 }
 ```
-when used with this `webpack.config.js`:
-```javascript
-const webpkr = require('webpkr');
-
-module.exports = webpkr({projectDir: __dirname});
-```
+and the bundled output is available in `dist/bundle.js`.
