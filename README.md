@@ -1,20 +1,6 @@
 # webpkr
-The missing JavaScript DSL for `webpack` configurations.
-
-<table >
-<tr>
-<td width="50%">
-<pre>
-context( projectDir )
-entry( './src/index.js')
-output( () => {
-  filename( 'bundle.js' )
-  path$( 'dist' )
-} )
-</pre>
-</td>
-<td width="50%">
-<pre>
+The missing JavaScript DSL for `webpack` configurations. So instead of writing this:
+```javascript
 {
   context: '/proj/repos/webpkr/test/simple',
   entry: './src/index.js',
@@ -23,10 +9,18 @@ output( () => {
     path: '/proj/repos/webpkr/test/simple/dist'
   }
 }
-</pre>
-</td>
-</tr>
-</table>
+```
+
+`webpkr` lets you write JavaScript code:
+
+```javascript
+context( projectDir )
+entry( './src/index.js')
+output( () => {
+  filename( 'bundle.js' )
+  path$( 'dist' )
+} )
+```
 
 ## Getting Started
  Install with npm
