@@ -1,5 +1,6 @@
 # webpkr
 The missing JavaScript DSL for `webpack` configurations. So instead of writing this:
+
 ```javascript
 {
   context: '/proj/repos/webpkr/test/simple',
@@ -23,17 +24,20 @@ output( () => {
 ```
 
 ## Getting Started
- Install with npm
+
+ Install with `npm`:
+
 ```bash
 $ npm install -D webpkr webpack
-
 ```
-Create `src/index.js` and add this:
+
+Create `src/index.js` and add:
+
 ```javascript
 console.log('Hello, world');
 ```
 
-Create a `webpack` subdirectory in your project's root and add file `index.js` in it:
+By default, `webpkr` looks for config scripts in the `webpack/` subdirectory. Create a `webpack` subdirectory in your project's root and add file `index.js` in it:
 ```bash
 $ mkdir webpack
 $ touch webpack/index.js
@@ -49,8 +53,7 @@ output( () => {
   path$( 'dist' )
 } )
 ```
-
-Create a `webpack.config.js` in your project's root and add these lines to it:
+Create a `webpack.config.js` in your project's root and add:
 
 ```javascript
 const webpkr = require('webpkr');
@@ -78,7 +81,13 @@ The DSL script generates the following webpack configuration:
 
 The bundled output is available in `dist/bundle.js`.
 
-### Example: Explicit vendor bundle
+## Features
+
+
+## Examples
+### Explicit vendor bundle
+
+File `webpack/index.js`. Use with `webpack.config.js` as described above.
 
 ```javascript
 const path = require( 'path' )
@@ -117,7 +126,13 @@ plugin( webpack.optimize.CommonsChunkPlugin, {
 
 ```
 
-### Example: Multiple environments
+### Multiple Environments
+
+Instead of duplicating configuration for multiple environments (e.g. development/production), `webpkr`
+lets you specify configuration items for specific environments in the same configuration.
+
+File `webpack/index.js`. Use with `webpack.config.js` as described above.
+
 ```javascript
 const Stats = require( 'stats-webpack-plugin' );
 
@@ -155,4 +170,53 @@ production( () => {
   } ) )
 } )
 
+```
+
+### Splitting Configuration into Multiple Files
+
+`webpkr` configurations can be split into multiple files. Simply `require` the parts like any other nodejs module. e.g.:
+
+File `webpack/index.js`.
+```javascript
+[
+  'base',
+  'js',
+  'fonts',
+  'stats',
+  'devtool',
+  'dev_server'
+].map( ( x ) => `./${x}` )
+  .forEach( require )
+```
+
+`base.js`
+```javascript
+context( projectDir )
+
+entry( './src/index.js' )
+
+output( () => {
+  filename( 'bundle.js' )
+  path$( 'dist' )
+} )
+
+stats( 'errors-only' )
+
+cache( true )
+
+resolve( { extensions: ['*', '.js', '.jsx'] } )
+```
+
+`js.js`
+```javascript
+const path = require( 'path' )
+
+module$( () => {
+  rule( () => {
+    test( /\.js$/ )
+    use( 'babel-loader' )
+    include( path.resolve( srcDirs.js ) )
+    exclude( /node_modules/ )
+  } )
+} )
 ```
