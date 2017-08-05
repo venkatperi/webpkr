@@ -1,20 +1,20 @@
 # webpkr
 The missing JavaScript DSL for `webpack` configurations.
 
-<table>
+<table >
 <tr>
 <td width="50%">
-```javascript
+<pre>
 context( projectDir )
 entry( './src/index.js')
 output( () => {
   filename( 'bundle.js' )
   path$( 'dist' )
 } )
-```
+</pre>
 </td>
 <td width="50%">
-```javascript
+<pre>
 {
   context: '/proj/repos/webpkr/test/simple',
   entry: './src/index.js',
@@ -23,7 +23,7 @@ output( () => {
     path: '/proj/repos/webpkr/test/simple/dist'
   }
 }
-```
+</pre>
 </td>
 </tr>
 </table>
