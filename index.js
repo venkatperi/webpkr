@@ -1,8 +1,8 @@
 const _ = require( 'lodash' );
 const Webpkr = require( './lib/webpkr' );
 
-function webpkr() {
-  let w = new Webpkr();
+function webpkr( opts ) {
+  let w = new Webpkr( opts );
   return w.buildFile();
 }
 

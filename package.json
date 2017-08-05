@@ -19,6 +19,13 @@
     "yargs": "^8.0.2"
   },
   "devDependencies": {
+    "chai": "^4.1.0",
+    "chai-fs": "^1.0.0",
+    "eslint": "^4.3.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.1.0",
     "gulp": "^3.9.1",
     "gulp-documentation": "^3.2.0",
     "gulp-istanbul": "^1.1.2",
@@ -27,6 +34,8 @@
     "gulp-npm-check": "^1.1.0",
     "gulp-release-it": "^1.1.5",
     "jshint": "^2.9.5",
-    "mocha": "^3.5.0"
+    "mocha": "^3.5.0",
+    "rimraf": "^2.6.1",
+    "webpack": "^3.4.1"
   }
 }

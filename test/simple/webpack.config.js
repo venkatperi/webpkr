@@ -1,3 +1,5 @@
 const webpkr = require( '../../' );
 
-module.exports = webpkr()
+const config = webpkr( { projectDir: __dirname } );
+console.log(config)
+module.exports=config

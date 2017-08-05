@@ -1,0 +1,19 @@
+{
+  "modules": {
+    "byIdentifier": {
+      "src/index.js": 0
+    },
+    "usedIds": {
+      "0": 0
+    }
+  },
+  "chunks": {
+    "byName": {
+      "main": 0
+    },
+    "byBlocks": {},
+    "usedIds": {
+      "0": 0
+    }
+  }
+}
