@@ -1,5 +1,7 @@
 # webpkr
-The missing JavaScript DSL for `webpack` configurations. So instead of writing this:
+The missing JavaScript DSL for configuring `webpack`.
+
+Instead of writing this:
 
 ```javascript
 {
@@ -81,7 +83,15 @@ The DSL script generates the following webpack configuration:
 
 The bundled output is available in `dist/bundle.js`.
 
-## Features
+## The `webpkr` DSL
+`webpkr` scripts are _configuration scripts_. As the script executes, it configures a tree of configuration nodes. During the evaluation phase, tree nodes are evaluated to generate a `webpack` configuration object.
+
+### Script Structure
+A configuration script is made of up of multiple statements and script blocks. A script block inserts a new node in the the _configuration tree_ and takes optional parameters. If the final parameter is a closure, it is treated as a _configuration closure_ which configures the newly created node. Any optional parameters are available to the node during the subsequent evaluation phase.
+
+Top level script blocks map to top level keys of the `webpack` configuration object. Where there is a potential clash of names (e.g. with `module` or `path`), the script block name is appended with a `$` symbol.
+
+A configuration script is also JavaScript code, and can contain any valid JavaScript, such as method definitions, `require` statements, classes etc.
 
 
 ## Examples
