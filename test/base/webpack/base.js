@@ -1,6 +1,7 @@
 context( projectDir )
 
 entry( './src/index.js' )
+entry(123)
 
 output( () => {
   filename( 'bundle.js' )
