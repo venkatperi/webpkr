@@ -16,6 +16,7 @@
     "factory-builder-support": "^0.4.0",
     "istanbul-lib-hook": "^1.0.7",
     "lodash": "^4.17.4",
+    "ramda": "^0.24.1",
     "stack-trace": "0.0.10",
     "unique-string": "^1.0.0",
     "webpack-config": "^7.1.0",

@@ -5,6 +5,18 @@ const validate = require( '../lib/validate' )
 
 describe( 'validate', () => {
 
+  describe( 'function', () => {
+    it( 'function', () => assert( validate.functionInstance( () => {
+    } ) ) )
+    it( 'not number', () => assert( !validate.functionInstance( 1 ) ) )
+  } )
+
+  describe( 'isObject', () => {
+    it( 'object', () => assert( validate.isObject( {} ) ) )
+    it( 'not array', () => assert( !validate.isObject( [1] ) ) )
+    it( 'not string', () => assert( !validate.isObject( 'abc' ) ) )
+  } )
+
   describe( 'nonEmptyString', () => {
     it( 'non empty string', () => assert( validate.nonEmptyString( ' ' ) ) )
     it( 'empty string', () => assert( !validate.nonEmptyString( '' ) ) )
@@ -26,24 +38,27 @@ describe( 'validate', () => {
     it( 'fails for non function', () => assert( !validate.functionInstance( 123 ) ) )
   } );
 
-  describe( 'everyProperty', () => {
+  describe( 'everyProp', () => {
     it( 'verifies every property value', () =>
-      assert( validate.everyProperty( validate.nonEmptyString, { a: '1', b: '2' } ) ) )
+      assert( validate.everyProp( validate.nonEmptyString, { a: '1', b: '2' } ) ) )
     it( 'verifies every property value', () =>
-      assert( !validate.everyProperty( validate.nonEmptyString, { a: '', b: '2' } ) ) )
+      assert( !validate.everyProp( validate.nonEmptyString, { a: '', b: '2' } ) ) )
     it( 'verifies every property value', () =>
-      assert( !validate.everyProperty(
-        validate.oneOf([validate.nonEmptyString,validate.functionInstance]),
+      assert( !validate.everyProp(
+        validate.any( [validate.nonEmptyString, validate.functionInstance] ),
         { a: ' ', b: '2', c: 123 } ) ) )
   } );
 
-  describe( 'oneOf', () => {
+  describe( 'any', () => {
     it( 'at least one test passes', () =>
-      assert( validate.oneOf( [validate.nonEmptyString, validate.functionInstance], ' ' ) ) )
+      assert( validate.any( [validate.nonEmptyString, validate.functionInstance] )( ' ' ) ) )
     it( 'at least one test passes', () =>
-      assert( validate.oneOf( [validate.nonEmptyString, validate.functionInstance], () => {} ) ) )
+      assert( validate.any( [validate.nonEmptyString,
+        validate.functionInstance] )( () => {
+      } ) ) )
     it( 'fails if none pass', () =>
-      assert( !validate.oneOf( [validate.nonEmptyString, validate.functionInstance], 123 ) ) )
+      assert( !validate.any( [validate.nonEmptyString,
+        validate.functionInstance] )( 123 ) ) )
   } );
 
   describe( 'condition', () => {
