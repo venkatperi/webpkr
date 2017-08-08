@@ -17,7 +17,7 @@ describe( name, () => {
   it( 'no env', ( done ) => {
 
     const config = require( `${__dirname}/${name}/webpack.config` );
-    webpack( config, ( err ) => {
+    webpack( config(), ( err ) => {
       if ( err ) {
         return done( err );
       }

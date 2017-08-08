@@ -12,7 +12,7 @@ describe( 'simple', () => {
 
   it( 'builds to dist/bundle.js', ( done ) => {
     const config = require( `${__dirname}/simple/webpack.config` );
-    webpack( config, ( err ) => {
+    webpack( config(), ( err ) => {
       if ( err ) {
         return done( err );
       }

@@ -15,7 +15,7 @@ describe( name, () => {
     assert( !fs.existsSync( path.join( dir, 'main-bundle.js' ) ) );
 
     const config = require( `${__dirname}/${name}/webpack.config` );
-    webpack( config, ( err ) => {
+    webpack( config(), ( err ) => {
       if ( err ) {
         return done( err );
       }
