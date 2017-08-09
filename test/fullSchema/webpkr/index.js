@@ -15,6 +15,8 @@ devServer( {
 } )
 devtool( 'cheap-module-source-map' )
 entry( './src/index.js' )
+entry( './src/index-b.js' )
+//entry( { main: './src/index' } )
 external( { react: 'react' } )
 
 external( {
