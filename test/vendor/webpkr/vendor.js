@@ -1,11 +1,11 @@
-const webpack=require('webpack')
+const webpack = require( 'webpack' )
 entry( { vendor: ['jquery', 'lodash', 'jsdom'] } )
 
 resolve( () => {
   alias( { jquery: 'jquery/src/jquery' } )
 } )
 
-plugin( webpack.ProvidePlugin, {
+provide( {
   $: 'jquery',
   jQuery: 'jquery'
 } )
