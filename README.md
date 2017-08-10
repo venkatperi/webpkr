@@ -1,4 +1,5 @@
 # webpkr
+[![npm version](https://badge.fury.io/js/webpkr.svg)](https://badge.fury.io/js/webpkr)
 ![Build Status](https://travis-ci.org/venkatperi/webpkr.svg?branch=master)
 
 The missing JavaScript DSL for configuring `webpack`.
