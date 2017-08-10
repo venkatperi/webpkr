@@ -1,6 +1,7 @@
 context( projectDir )
 
 entry( './src/index.js' )
+entry( './css/style-b.css' )
 
 output( () => {
   filename( 'bundle.js' )
@@ -12,3 +13,7 @@ stats( 'errors-only' )
 cache( true )
 
 resolve( { extensions: ['*', '.js', '.jsx'] } )
+
+doFirst( () => {
+  entry( './css/style-a.css' )
+} )
