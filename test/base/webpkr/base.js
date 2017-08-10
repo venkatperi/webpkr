@@ -2,6 +2,7 @@ context( projectDir )
 
 entry( './src/index.js' )
 entry( './css/style-b.css' )
+// entry(1)
 
 output( () => {
   filename( 'bundle.js' )
