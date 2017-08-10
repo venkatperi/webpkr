@@ -1,6 +1,6 @@
 {
   "name": "webpkr",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "A JavaScript based DSL for webpack configurations",
   "main": "index.js",
   "scripts": {
