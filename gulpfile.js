@@ -6,7 +6,7 @@ const istanbul = require('gulp-istanbul')
 const npmcheck = require('gulp-npm-check');
 const path = require('path');
 const arrayp = require('arrayp');
-const { promisify } = require('util');
+const promisify = require('util').promisify;
 const exec = promisify(require('child_process')
   .exec);
 require('gulp-release-it')(gulp);
