@@ -1,4 +1,6 @@
 # webpkr
+![Build Status](https://travis-ci.org/venkatperi/webpkr.svg?branch=master)
+
 The missing JavaScript DSL for configuring `webpack`.
 See [docs](https://venkatperi.github.io/webpkr-doc/).
 
