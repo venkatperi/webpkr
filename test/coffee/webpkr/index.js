@@ -1,8 +1,10 @@
+require('coffee-script').register();
+
 [
   'base',
   'js',
-  'fonts',
   'css',
+  'fonts',
   'stats',
   'devtool',
   'dev_server'

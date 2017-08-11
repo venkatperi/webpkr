@@ -25,13 +25,13 @@ const Webpkr = require( './lib/webpkr' );
  * Create an instance of Webpkr and invoke `buildFile()` with the
  * supplied options.
  *
- * @param {String} [file] - webpkr config module
+ * @param {String|Function} [src] - webpkr config module
  * @param {Object} [opts] - options
  * @returns {Function} config - the webpack configuration function
  */
-function webpkr( file, opts ) {
-  let w = new Webpkr( file, opts );
-  return w.buildFile();
+function webpkr( src, opts ) {
+  let w = new Webpkr( src, opts );
+  return w.build( src, opts );
 }
 
 webpkr.Webpkr = Webpkr;

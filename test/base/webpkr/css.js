@@ -14,6 +14,5 @@ module$( () => {
       fallback: 'style-loader',
       use: 'css-loader',
     } ) )
-    include( srcDirs.css )
   } )
 } )

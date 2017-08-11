@@ -6,9 +6,9 @@ const V = require( '../lib/util/validate' )
 describe( 'validate', () => {
 
   describe( 'function', () => {
-    it( 'function', () => assert( V.functionInstance( () => {
+    it( 'function', () => assert( V.isFunction( () => {
     } ) ) )
-    it( 'not number', () => assert( !V.functionInstance( 1 ) ) )
+    it( 'not number', () => assert( !V.isFunction( 1 ) ) )
   } )
 
   describe( 'containedNotNil', () => {
@@ -40,9 +40,9 @@ describe( 'validate', () => {
   } );
 
   describe( 'function', () => {
-    it( 'works', () => assert( V.functionInstance( () => {
+    it( 'works', () => assert( V.isFunction( () => {
     } ) ) )
-    it( 'fails for non function', () => assert( !V.functionInstance( 123 ) ) )
+    it( 'fails for non function', () => assert( !V.isFunction( 123 ) ) )
   } );
 
   describe( 'everyProp', () => {
@@ -52,20 +52,20 @@ describe( 'validate', () => {
       assert( !V.everyProp( V.nonEmptyString, { a: '', b: '2' } ) ) )
     it( 'verifies every property value', () =>
       assert( !V.everyProp(
-        V.any( [V.nonEmptyString, V.functionInstance] ),
+        V.any( [V.nonEmptyString, V.isFunction] ),
         { a: ' ', b: '2', c: 123 } ) ) )
   } );
 
   describe( 'any', () => {
     it( 'at least one test passes', () =>
-      assert( V.any( [V.nonEmptyString, V.functionInstance] )( ' ' ) ) )
+      assert( V.any( [V.nonEmptyString, V.isFunction] )( ' ' ) ) )
     it( 'at least one test passes', () =>
       assert( V.any( [V.nonEmptyString,
-        V.functionInstance] )( () => {
+        V.isFunction] )( () => {
       } ) ) )
     it( 'fails if none pass', () =>
       assert( !V.any( [V.nonEmptyString,
-        V.functionInstance] )( 123 ) ) )
+        V.isFunction] )( 123 ) ) )
   } );
 
   describe( 'condition', () => {
