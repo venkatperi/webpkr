@@ -2,31 +2,58 @@
 [![npm](https://badge.fury.io/js/webpkr.svg)](https://badge.fury.io/js/webpkr)
 ![Build Status](https://travis-ci.org/venkatperi/webpkr.svg?branch=master)
 
-The missing JavaScript DSL for configuring `webpack`.
-See [docs](https://venkatperi.github.io/webpkr-doc/).
+Webpkr is a build system for `webpack` configurations. See [docs](https://venkatperi.github.io/webpkr-doc/).
 
-Instead of writing this:
-
-```javascript
-{
-  context: '/proj/repos/webpkr/test/simple',
-  entry: './src/index.js',
-  output: {
-    filename: 'bundle.js',
-    path: '/proj/repos/webpkr/test/simple/dist'
-  }
-}
-```
-
-`webpkr` lets you write JavaScript code:
+#### Declarative Build Scripts
+* Write declarative _build scripts_.
+* Stop _mutating_ monolithic objects.
+* Plain ol' JavaScript.
 
 ```javascript
+ // base.js
 context( projectDir )
 entry( './src/index.js')
 output( () => {
   filename( 'bundle.js' )
-  path$( 'dist' )
-} )
+  path$( 'dist' ) } )
+```
+
+
+#### Single Build Truth
+- All code in the same build script.
+- No need to clone configurations.
+
+```javascript
+ // devtool.js
+ // only for NODE_ENV=development
+development( () => {
+  devtool( 'cheap-module-source-map' ) } )
+```
+
+#### Logical Partitioning
+- Partition code logically for reuse.
+
+```javascript
+ // css.js
+plugin( new ExtractTextPlugin( ) )
+module$( () => {
+  rule( () => {
+    test( /\.css$/ )
+    use( ExtractTextPlugin.extract( {
+      use: 'css-loader', } ) ) } ) } )
+
+```
+
+
+#### Just `require`
+- Order of assembly is largely unimportant.
+- Webpkr builds correct configuration object.
+
+```javascript
+ //index.js
+require('./base')
+require('./devtool')
+require('./css')  //that's it
 ```
 
 ## Getting Started
