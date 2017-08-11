@@ -1,13 +1,18 @@
 {
   "name": "webpkr",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "A JavaScript based DSL for webpack configurations",
   "main": "index.js",
   "scripts": {
     "test": "gulp test"
   },
   "author": "Venkat Peri <venkatperi@gmail.com>",
-  "keywords" : ["webpack", "dsl", "config", "javascript"],
+  "keywords": [
+    "webpack",
+    "dsl",
+    "config",
+    "javascript"
+  ],
   "license": "MIT",
   "dependencies": {
     "arrayp": "^1.1.0",
