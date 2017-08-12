@@ -42,10 +42,9 @@ gulp.task( 'lint', () => gulp.src( srcDirs.js )
   .pipe( jshint.reporter( 'default' ) )
   .pipe( jshint.reporter( 'fail' ) ) );
 
-gulp.task( 'test', ['lint', 'deps', 'coverage'],
+gulp.task( 'test', ['lint', 'deps'],
   () => gulp.src( srcDirs.test, { read: false } )
     .pipe( mocha() ),
-  // .pipe( istanbul.writeReports() )
 );
 
 gulp.task( 'coverage', () =>
