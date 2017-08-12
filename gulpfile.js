@@ -1,4 +1,5 @@
 const gulp = require( 'gulp' );
+const _ = require( 'lodash' );
 const gulpDocumentation = require( 'gulp-documentation' );
 const mocha = require( 'gulp-mocha' );
 const jshint = require( 'gulp-jshint' )
@@ -8,6 +9,7 @@ const path = require( 'path' );
 const arrayp = require( 'arrayp' );
 const promisify = require( 'pify' );
 const exec = promisify( require( 'child_process' ).exec );
+const rimraf = promisify( require( 'rimraf' ) );
 require( 'gulp-release-it' )( gulp );
 
 const tests = ['simple', 'base', 'vendor', 'multi-env', 'fullSchema'];
@@ -19,10 +21,9 @@ const srcDirs = {
 }
 
 gulp.task( 'pre-test', () =>
-  arrayp.chain( tests.map( ( t ) =>
-    exec( 'npm install', { cwd: path.join( __dirname, `test/${t}` ) } )
-      .then( ( res ) => console.log( `test/${t}\n`, res.stdout ) )
-  ) )
+  arrayp.chain( _.flatten( tests.map( ( t ) =>
+    exec( 'init.sh', { cwd: path.join( __dirname, `test/${t}` ) } )
+  ) ) )
 )
 
 gulp.task( 'deps', function ( cb ) {

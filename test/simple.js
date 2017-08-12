@@ -4,11 +4,13 @@ const assert = require( 'assert' );
 const path = require( 'path' );
 const fs = require( 'fs' );
 const rimraf = require( 'rimraf' );
+const clear = require( './fixtures/clear' );
 
-describe( 'simple', () => {
-  const dir = path.join( __dirname, 'simple/dist' );
-
-  beforeEach( done => rimraf( dir, done ) );
+const name = 'simple';
+describe( name, () => {
+  const projectDir = path.join( __dirname, `${name}` );
+  const buildDir = path.join( projectDir, `dist` );
+  beforeEach( () => clear( { cwd: projectDir } ) )
 
   it( 'builds to dist/bundle.js', ( done ) => {
     const config = require( `${__dirname}/simple/webpack.config` );
@@ -16,7 +18,7 @@ describe( 'simple', () => {
       if ( err ) {
         return done( err );
       }
-      assert( fs.existsSync( path.join( dir, 'bundle.js' ) ) );
+      assert( fs.existsSync( path.join( buildDir, 'bundle.js' ) ) );
       return done();
     } );
   } );

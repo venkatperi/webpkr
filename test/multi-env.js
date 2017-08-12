@@ -6,13 +6,14 @@ const childProcess = require( 'child_process' );
 const path = require( 'path' );
 const fs = require( 'fs' );
 const rimraf = require( 'rimraf' );
+const clear = require( './fixtures/clear' );
 
 
 const name = 'multi-env';
 describe( name, () => {
-  const dir = path.join( __dirname, `${name}/dist` );
-
-  beforeEach( done => rimraf( dir, done ) );
+  const projectDir = path.join( __dirname, `${name}` );
+  const buildDir = path.join( projectDir, `dist` );
+  beforeEach( () => clear( { cwd: projectDir } ) )
 
   it( 'no env', ( done ) => {
 
@@ -21,23 +22,22 @@ describe( name, () => {
       if ( err ) {
         return done( err );
       }
-      assert( fs.existsSync( path.join( dir, 'main-bundle.js' ) ) );
-      assert( !fs.existsSync( path.join( dir, 'main-prod-bundle.js' ) ) );
+      assert( fs.existsSync( path.join( buildDir, 'main-bundle.js' ) ) );
+      assert( !fs.existsSync( path.join( buildDir, 'main-prod-bundle.js' ) ) );
       return done();
     } );
   } );
 
   it( 'production', ( done ) => {
-    const dir2 = path.join( __dirname, `${name}` );
-    childProcess.exec( path.join( dir2, 'node_modules/.bin/webpack' ), {
-      cwd: dir2,
+    childProcess.exec( path.join( projectDir, 'node_modules/.bin/webpack' ), {
+      cwd: projectDir,
       env: _.extend( {}, process.env, { NODE_ENV: 'production' } )
     }, ( err ) => {
       if ( err ) {
         return done( err );
       }
-      assert( fs.existsSync( path.join( dir, 'main-prod-bundle.js' ) ) );
-      assert( !fs.existsSync( path.join( dir, 'main-bundle.js' ) ) );
+      assert( fs.existsSync( path.join( buildDir, 'main-prod-bundle.js' ) ) );
+      assert( !fs.existsSync( path.join( buildDir, 'main-bundle.js' ) ) );
       return done();
     } );
   } );
