@@ -9,7 +9,6 @@ const path = require( 'path' );
 const arrayp = require( 'arrayp' );
 const promisify = require( 'pify' );
 const exec = promisify( require( 'child_process' ).exec );
-const rimraf = promisify( require( 'rimraf' ) );
 require( 'gulp-release-it' )( gulp );
 
 const tests = ['simple', 'base', 'vendor', 'multi-env', 'fullSchema'];
@@ -43,10 +42,10 @@ gulp.task( 'lint', function () {
     .pipe( jshint.reporter( 'fail' ) );
 } );
 
-gulp.task( 'test', ['pre-test'], () =>
-    gulp.src( srcDirs.test, { read: false } )
-      .pipe( mocha() )
-  //.pipe( istanbul.writeReports() )
+gulp.task( 'test', ['coverage'], () =>
+  gulp.src( srcDirs.test, { read: false } )
+    .pipe( mocha() )
+    //.pipe( istanbul.writeReports() )
 );
 
 gulp.task( 'coverage', () =>
@@ -54,3 +53,4 @@ gulp.task( 'coverage', () =>
     .pipe( istanbul() )
     .pipe( istanbul.hookRequire() )
 );
+
