@@ -1,56 +1,56 @@
+// Copyright 2017, Venkat Peri.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 const gulp = require( 'gulp' );
-const _ = require( 'lodash' );
-const gulpDocumentation = require( 'gulp-documentation' );
 const mocha = require( 'gulp-mocha' );
-const jshint = require( 'gulp-jshint' )
-const istanbul = require( 'gulp-istanbul' )
+const jshint = require( 'gulp-jshint' );
+const istanbul = require( 'gulp-istanbul' );
 const npmcheck = require( 'gulp-npm-check' );
-const path = require( 'path' );
-const arrayp = require( 'arrayp' );
-const promisify = require( 'pify' );
-const exec = promisify( require( 'child_process' ).exec );
 require( 'gulp-release-it' )( gulp );
 
-const tests = ['simple', 'base', 'vendor', 'multi-env', 'fullSchema'];
 
 const srcDirs = {
-  js: ['index.js', "lib/**/*.js"],
-  test: "test/*.{js,coffee}",
-  doc: "doc"
-}
+  js: ['index.js', 'lib/**/*.js'],
+  test: 'test/*.{js,coffee}',
+  doc: 'doc',
+};
 
-gulp.task( 'pre-test', () =>
-  arrayp.chain( _.flatten( tests.map( ( t ) =>
-    exec( 'init.sh', { cwd: path.join( __dirname, `test/${t}` ) } )
-  ) ) )
-)
-
-gulp.task( 'deps', function ( cb ) {
+gulp.task( 'deps', ( cb ) => {
   npmcheck( cb );
 } );
 
-gulp.task( 'docs', function () {
-  return gulp.src( srcDirs.js )
-    .pipe( gulpDocumentation( 'md' ) )
-    .pipe( gulp.dest( 'doc/' ) );
-} );
+gulp.task( 'lint', () => gulp.src( srcDirs.js )
+  .pipe( jshint( { esversion: 6, asi: true } ) )
+  .pipe( jshint.reporter( 'default' ) )
+  .pipe( jshint.reporter( 'fail' ) ) );
 
-gulp.task( 'lint', function () {
-  return gulp.src( srcDirs.js )
-    .pipe( jshint( { esversion: 6, asi: true } ) )
-    .pipe( jshint.reporter( 'default' ) )
-    .pipe( jshint.reporter( 'fail' ) );
-} );
-
-gulp.task( 'test', ['coverage'], () =>
-  gulp.src( srcDirs.test, { read: false } )
-    .pipe( mocha() )
-    //.pipe( istanbul.writeReports() )
+gulp.task( 'test', ['lint', 'deps', 'coverage'],
+  () => gulp.src( srcDirs.test, { read: false } )
+    .pipe( mocha() ),
+  // .pipe( istanbul.writeReports() )
 );
 
 gulp.task( 'coverage', () =>
   gulp.src( srcDirs.js )
     .pipe( istanbul() )
-    .pipe( istanbul.hookRequire() )
+    .pipe( istanbul.hookRequire() ),
 );
 

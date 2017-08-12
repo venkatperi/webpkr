@@ -17,7 +17,7 @@
   "dependencies": {
     "arrayp": "^1.1.0",
     "convict": "^4.0.0",
-    "debug": "^2.6.8",
+    "debug": "^3.0.0",
     "deepmerge": "^1.5.0",
     "istanbul-lib-hook": "^1.0.7",
     "js-dsl": "^0.4.4",
@@ -25,6 +25,7 @@
     "ramda": "^0.24.1",
     "stack-trace": "0.0.10",
     "unique-string": "^1.0.0",
+    "webpack": "^3.5.4",
     "webpack-config": "^7.2.1",
     "yargs": "^8.0.2"
   },
@@ -36,7 +37,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.2.0",
     "gulp": "^3.9.1",
-    "gulp-documentation": "^3.2.0",
+    "gulp-documentation": "^3.2.1",
     "gulp-istanbul": "^1.1.2",
     "gulp-jshint": "^2.0.4",
     "gulp-mocha": "^4.3.1",
@@ -46,7 +47,6 @@
     "jshint": "^2.9.5",
     "mocha": "^3.5.0",
     "pify": "^3.0.0",
-    "rimraf": "^2.6.1",
-    "webpack": "^3.5.3"
+    "rimraf": "^2.6.1"
   }
 }
