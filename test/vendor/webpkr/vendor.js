@@ -10,8 +10,8 @@ provide( {
   jQuery: 'jquery'
 } )
 
-plugin( webpack.optimize.CommonsChunkPlugin, {
+plugin( new webpack.optimize.CommonsChunkPlugin( {
   name: 'vendor',
   minChunks: Infinity
-} )
+} ) )
 
