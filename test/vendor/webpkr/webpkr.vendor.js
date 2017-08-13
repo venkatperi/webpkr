@@ -1,5 +1,6 @@
 const webpack = require( 'webpack' )
-entry( { vendor: ['jquery', 'lodash', 'jsdom'] } )
+
+entry( { vendor: ['jquery'], } )
 
 resolve( () => {
   alias( { jquery: 'jquery/src/jquery' } )
@@ -7,11 +8,11 @@ resolve( () => {
 
 provide( {
   $: 'jquery',
-  jQuery: 'jquery'
+  jQuery: 'jquery',
 } )
 
 plugin( new webpack.optimize.CommonsChunkPlugin( {
   name: 'vendor',
-  minChunks: Infinity
+  minChunks: Infinity,
 } ) )
 

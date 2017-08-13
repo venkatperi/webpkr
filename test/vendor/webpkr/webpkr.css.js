@@ -2,9 +2,9 @@ const ExtractTextPlugin = require( 'extract-text-webpack-plugin' )
 
 plugin(
   new ExtractTextPlugin( {
-    filename: "style.css",
-    allChunks: true
-  } )
+    filename: 'style.css',
+    allChunks: true,
+  } ),
 )
 
 module$( () => {

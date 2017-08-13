@@ -1,5 +1,6 @@
 [
   'base',
+  'html',
   'vendor',
   'node',
   'js',
@@ -7,5 +8,5 @@
   'stats',
   'devtool',
   'dev_server',
-].map( x => `./${x}` )
+].map( x => `./webpkr.${x}` )
   .forEach( require );

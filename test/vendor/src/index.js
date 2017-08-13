@@ -1,11 +1,7 @@
-const jsdom = require( 'jsdom' );
-const { JSDOM } = jsdom;
-
-const { window } = (new JSDOM( '' )).window;
-global.window = window;
-global.document = window.document;
 const $ = require( 'jquery' );
 
-$( () => {
+$.ready( () => {
   console.log( 'jquery ready' );
+  $( '#test' ).text( 'explicit vendor chunk' )
 } );
+

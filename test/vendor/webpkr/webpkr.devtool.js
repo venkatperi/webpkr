@@ -1,7 +1,7 @@
-development( () =>
+development( () => {
   devtool( 'cheap-module-source-map' )
-)
+} )
 
-production( () =>
+production( () => {
   devtool( false )
-)
+} )

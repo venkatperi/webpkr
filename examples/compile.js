@@ -18,17 +18,19 @@
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 const { Webpkr } = require( '../' );
+
 const webpkr = new Webpkr();
 
 const tree = webpkr.compile( () => {
-  context( projectDir )
-  entry( './src/index.js' )
+  context( projectDir );
+  entry( './src/index.js' );
   output( () => {
-    filename( 'bundle.js' )
-    path$( 'dist' )
-  } )
-} )
+    filename( 'bundle.js' );
+    path$( 'dist' );
+  } );
+} );
 
 // print configuration tree
 console.log( tree.toAsciiTree() );

@@ -19,16 +19,9 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-const webpackTest = require( './fixtures/webpack_test' );
-const _ = require( 'lodash' );
-const R = require( 'ramda' );
+const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 
-const tests = {
-  base: ['bundle.js'],
-  coffee: ['bundle.js'],
-  simple: ['bundle.js'],
-  vendor: ['main-bundle.js', 'vendor-bundle.js'],
-  // 'multi-env': ['main-bundle.js', 'main-prod-bundle.js'],
-};
-
-_.forOwn( tests, R.flip( webpackTest ) );
+plugin( new HtmlWebpackPlugin( {
+  title: 'Explicit Vendor Chunk',
+  template: 'index.ejs',
+} ) )

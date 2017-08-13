@@ -24,6 +24,7 @@
 
 const pify = require( 'pify' );
 const _ = require( 'lodash' );
+const exec = pify( require( 'child_process' ).exec );
 const webpack = pify( require( 'webpack' ) );
 const path = require( 'path' );
 const arrayp = require( 'arrayp' );
@@ -33,9 +34,8 @@ const { assertExists, assertNotExist } = require( './util' );
 const webpackp = config => webpack(
   typeof config === 'function' ? config() : config );
 
-
 function test( name, artifacts ) {
-  describe( name, function () {
+  describe( name, () => {
     const projectDir = path.join( __dirname, `../${name}` );
     const buildDir = path.join( projectDir, 'dist' );
     const targetFiles = artifacts.map( x => path.join( buildDir, x ) );
@@ -46,10 +46,13 @@ function test( name, artifacts ) {
 
     it( 'builds', () => {
       const config = require( `${projectDir}/webpack.config` );
-      arrayp.chain( _.flatten( [
+      return arrayp.chain( _.flatten( [
         allNotExist,
         () => webpackp( config ),
         allExist,
+        () => exec( 'npm run test', {
+          cwd: projectDir,
+        } ),
       ] ) );
     } );
   } );

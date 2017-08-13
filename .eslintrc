@@ -1,5 +1,8 @@
 {
-  "extends": "airbnb",
+  "extends": [
+    "airbnb",
+    "./.eslintrc-webpkr"
+  ],
   "globals": {
     "webpackConfig": false,
     "projectDir": true
@@ -9,6 +12,7 @@
     "node": true
   },
   "rules": {
+    "semi": "off",
     "space-in-parens": "off",
     "no-param-reassign": "off",
     "no-underscore-dangle": "off",
