@@ -8,9 +8,13 @@ cache:
 notifications:
   email: false
 
-before_script:
+before_install:
   - nvm install 8
+
+install:
   - npm install --silent
+
+before_script:
   - npm prune
 
 after_success:
