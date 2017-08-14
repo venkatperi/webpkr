@@ -149,5 +149,9 @@
         "staging": true
       }
     }
-  ]
+  ],
+  "rules": {
+    "semi": "off",
+    "space-in-parens": "off"
+  }
 }
